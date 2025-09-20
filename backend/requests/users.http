@@ -1,0 +1,25 @@
+GET http://localhost:5000/api/v1/users
+
+
+###
+GET http://localhost:5000/api/v1/users/2
+
+###
+POST http://localhost:5000/api/v1/users
+Content-Type: application/json 
+
+{
+    "id": 3,
+    "username": "rossi",
+}
+
+###
+PUT http://localhost:5000/api/v1/users/1
+Content-Type: application/application/json
+{
+    "username": "modificato"
+}
+
+###
+DELETE http://localhost:5000/api/v1/users/1
+
