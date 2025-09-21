@@ -19,3 +19,13 @@ export async function getById(id) {
         console.log(error);
     }  
 }
+
+export async function deleteById(id) {
+    try{
+        const response = await instance.delete('/authors/'+id);
+        return response.data;
+    }
+    catch (error){
+        console.log(error);
+    }
+}

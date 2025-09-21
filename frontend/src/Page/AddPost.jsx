@@ -65,10 +65,10 @@ function AddPost() {
 
 
     return (
-        <Container>
+        <Container className="m-5" >
             <h2>Nuovo Post</h2>
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-5">
                     <Form.Label>Titolo</Form.Label>
                     <Form.Control
                         type="text"

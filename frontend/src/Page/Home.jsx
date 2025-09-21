@@ -38,7 +38,7 @@ function Home({ searchTerm }) {
     <Container>
       <Row>
         {filteredPosts.map(post => (
-          <Col key={post._id} className="col-4 mb-4">
+          <Col key={post._id} className="mb-4" xs={12} md={4}>
             <SinglePost
               post={post}
               onDelete={(id) => setPosts(prev => prev.filter(p => p._id !== id))}

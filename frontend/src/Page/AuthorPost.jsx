@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { Col, Container, Row } from "react-bootstrap";
 import SinglePost from "../components/SinglePost";
 import { getAllPost } from "../../data/post";

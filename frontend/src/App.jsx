@@ -11,6 +11,8 @@ import Register from './components/Register';
 import GoogleLogin from './components/GoogleLogin';
 import Authors from './Page/Authors';
 import AuthorPost from './Page/AuthorPost';
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 
 

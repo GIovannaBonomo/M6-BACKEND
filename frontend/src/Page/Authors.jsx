@@ -24,8 +24,11 @@ function Authors() {
         <Container>
         <Row>
             {authors.map(author => (
-            <Col key={author._id} className="col-4 mb-4">
-                <SingleAuthor author={author}/>
+            <Col key={author._id} className="mb-4" xs={12} md={4}>
+                <SingleAuthor
+                author={author}
+                onDelete={(id)=> setAuthors(prev => prev.filter(p => p._id !== id))}
+                />
             </Col>
             ))}
         </Row>

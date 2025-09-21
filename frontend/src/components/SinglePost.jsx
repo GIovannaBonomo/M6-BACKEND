@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, ListGroup, Form } from "react-bootstrap";
+import { Button, Card, ListGroup, Form, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../data/post";
 import { createComment, deleteComment, getAllComments } from "../../data/comment";
@@ -41,37 +41,56 @@ function SinglePost({ post, onDelete }) {
   if (!post) return null;
 
   return (
-    <Card className="m-5" style={{ width: '18rem' }}>
+    <Card className="m-3 shadow-sm rounded-3 h-100">
       <Card.Img variant="top" src={post.cover} />
       <Card.Body>
-        <Card.Title>{post.title}</Card.Title>
+        <Card.Title className="fw-bold fs-5 text-dark">{post.title}</Card.Title>
+        <Badge bg="dark" className="mb-2">{post.category}</Badge>
+        <Card.Text className="text-muted small">{post.descrizione}</Card.Text>
+        <div className="d-flex justify-content-between text-muted small">
+          <span>By: {post.author.nome} {post.author.cognome}</span>
+          <span>{post.readTime.value} {post.readTime.unit}</span>
+        </div>
       </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>{post.category}</ListGroup.Item>
-        <ListGroup.Item>Descrizione: {post.descrizione}</ListGroup.Item>
-        <ListGroup.Item>By: {post.author.nome} {post.author.cognome}</ListGroup.Item>
-        <ListGroup.Item>{post.readTime.value}{post.readTime.unit}</ListGroup.Item>
-      </ListGroup>
-      <Card.Body className="d-flex justify-content-between align-items-center">
-        <Card.Link as={Link} to={`/posts/${post._id}`}>Link</Card.Link>
-        <Button variant="danger" onClick={handleDeletePost}>x</Button>
-      </Card.Body>
-      <Card.Body>
-        <h5>Commenti</h5>
-        {comments.map(c => (
-          <div key={c._id} className="d-flex justify-content-between align-items-center mb-2">
-            <span>{c.text}</span>
-            <Button variant="outline-danger" size="sm" onClick={() => handleDeleteComment(c._id)}>x</Button>
-          </div>
-        ))}
-        <Form.Control
-          type="text"
-          value={newComment}
-          placeholder="Scrivi un commento..."
-          onChange={(e) => setNewComment(e.target.value)}
-          className="mb-2"
+      <Card.Footer className="d-flex justify-content-between align-items-center bg-white border-0">
+        <Button as={Link} to={`/posts/${post._id}`} variant="outline-dark" size="sm">
+          Vai al post
+        </Button>
+        <i
+          className="bi bi-x-circle-fill text-danger fs-4"
+          role="button"
+          onClick={handleDeletePost}
         />
-        <Button onClick={handleAddComment}>Invia</Button>
+      </Card.Footer>
+        <Card.Body>
+        <h6 className="fw-bold">Commenti</h6>
+        <ListGroup variant="flush" className="mb-2">
+          {comments.map(c => (
+            <ListGroup.Item 
+              key={c._id} 
+              className="d-flex justify-content-between align-items-center"
+            >
+              <span>{c.text}</span>
+              <i
+          className="bi bi-x-circle-fill text-danger fs-4"
+          role="button"
+          onClick={() => handleDeleteComment(c._id)}
+        />
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <div className="d-flex">
+          <Form.Control
+            type="text"
+            value={newComment}
+            placeholder="Scrivi un commento..."
+            onChange={(e) => setNewComment(e.target.value)}
+            className="me-2 rounded-pill"
+          />
+          <Button onClick={handleAddComment} size="sm" variant="dark" className="rounded-pill">
+            Invia
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );
