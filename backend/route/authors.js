@@ -14,12 +14,8 @@ authorsRouter.get('/:id', getById);
 authorsRouter.put('/:id', put);
 authorsRouter.patch('/:id/avatar', uploadCloudinary.single('avatar'), addAvatar);
 authorsRouter.delete('/:id', deleteById);
-authorsRouter.get('/login-google', passport.authenticate('google', {scope: ['profile', 'email']}));
-authorsRouter.get('/google/callback', passport.authenticate('google', {session: false}), (req, res) => {
-   res.redirect(`${process.env.FRONTEND_HOST}/login/success?jwt=${req.user.jwt}`);
-  
-    
-});
+
+
 
 export default authorsRouter;
 
